@@ -1,4 +1,4 @@
-# D-Lab's R Fundamentals Workshop
+# D-Lab's R Push-Ins
 
 [![Datauhb](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Push-Ins&urlpath=rstudio%2F&branch=main) [![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/dlab-berkeley/R-Fundamentals/main?urlpath=rstudio)
 
