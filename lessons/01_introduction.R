@@ -235,10 +235,10 @@ rownames(df)
 class(rownames(df))
 
 ## You can extract a single column with the $ operator:
-df$Country
+df$country
 
 ## The $ operator can also be used to create new columns:
-df$Density <- df$Population / df$Area
+df$density <- df$population / df$area
 df
 
 ### Challenge 3: Make your own data frame.
