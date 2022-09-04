@@ -188,5 +188,13 @@ averageTreatmentEffect
 ## One way to confirm our results is by running a "t-test". There's a function for that in R. We see that the probability that there is no difference between our groups given we had observed such a large difference between the two of them is extremely small. 
 t.test(x = treatGroup, y=controlGroup)
 
+## Yet another way we can test the difference, which in this case is equivalent, is to run a regression of the outcome on the treatment assignment. In R, the function for this is lm(). This combines everything we have seen so far, our data frame with our experimental data, functions, and named arguments.
+model <- lm(result ~ condition, data = dat)
+
+## We can see a summary of our results with the summary() function.
+## Notice how the t-value and the p-value are the same between the t-test and the regression.
+summary(model)
+
+
 ## This concludes the R Introduction Push-In!
 ## We encourage you to check out R-Fundamentals for a more detailed introduction into R.
