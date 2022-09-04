@@ -2,6 +2,9 @@
 ## The goal of this Push-In is to provide a light introduction to R.
 ## We aim to build up to data frames, which are one of the most commonly used data structures in R.
 
+## All of these lines that are in a different color are comments. 
+## Use a hashtag to comment your code (e.g., write notes to your future self and your collaborators) to help keep your script organized. 
+
 # Section 1: Navigating RStudio
 
 ## By default, this script will open in the upper left pane of RStudio. You can open a new script by clicking File --> New File --> R Script.
@@ -15,66 +18,57 @@
 
 ## RStudio also has a lot of helpful customizations to improve your experience:
 
-## Click Tools --> Global Options --> Appearance to change your color and font settings.
+## Let's check to confirm that one specific option is on. 
 ## Click Tools --> Global Options --> Code and check the box that says "Soft-wrap R source files" to wrap the text in your script to the width of the script pane.
-## Click Tools --> Global Options --> Code --> Display and check the boxes that say "Highlight selected line" and "Highlight R function calls". These will provide helpful highlighting as you edit your files.
+
+# Section 2: The Whole Game
+
+## In this introduction to R we are going to introduce a common data analysis task-Analyzing an experiment. Along the way, we will introduce many of the basic concepts of the language. 
+
+## Our analysis is inspired by James Lind's original work to determine the cause of scurvy in 1747. At the time, there was not a conclusive explanation in England for why sailors developed scurvy. Nowadays, we knew (as did a variety of indigenous populations in Asia and South America) that scurvy is a disease caused by a severe lack of vitamin C. Eating citrus fruits is restorative. 
 
 # Section 2: Variable Assignment
 
-## Try assigning the value "5" to the variable 'number' and then run 'number'.
+## Try assigning the value 1 to the variable 'hasScurvy' and then run 'hasScurvy'.
+
+
 ## To run a line of code, place your cursor on a line of runnable code and click the "Run" button or click Ctrl + Enter (PC) or command + Enter (Mac).
-number <- 5
-number
+
 
 ## You can also use the '=' operator to do variable assignment. 
+## Repeat the steps that you just did but with a new variable "vitaminC". Assign this variable the value 0.
+
+## An initial reason for assigning some value to a variable is to store it to do computations later. For example, you can perform basic arithmetic in R:
+
 number = 5
-number
+number + 1 ## will result in 6, but the value of number will not change 
+number 
 
-## There are subtle differences between '<-' and '=', which won't matter in most cases. However, using '<-' is considered good code style. You want your code to adhere to good stylistic practices, since that makes it easier to read and use by other users.
+### Challenge 1: Variable Assignment
+### Define three variables and then write a mathematical expression using only those variables. 
 
-## You can perform basic arithmetic in R:
-number + 1
-number - 2
-number * 3
-number / 4
-
-## Use a hashtag to comment your code (e.g., write notes to your future self and your collaborators) to help keep your script organized. 
 
 ## Press Ctrl + l on both Mac and PC to clear your console. This does not erase any data. It simply moves the console prompt (the greater-than symbol: >) up to the top to improve readability. 
 
+
 # Section 3: Functions and Arguments
 
-## Functions perform actions on inputs. They are followed by trailing round parentheses.
+## Functions perform actions on inputs. They are followed by trailing round parentheses. The functions that we will use in this push-in let us create variables to store our data, variables to analyze our data, and some functions to plot our data. 
+
 ## Arguments are the inputs - values, expressions, text, entire datasets, etc. You tell a function what arguments it needs inside the parentheses. Sometimes, these arguments are "named". This is helpful when you need to enter multiple arguments: the names tell R which arguments correspond to what variables you're passing into the function.
 
-## Use the ls() function to see all of the variables you have defined.
-## Notice that ls() does not take any arguments!
-ls()
+# Section 4: Data Structures
 
-## You can use the "TAB" key to autocomplete a variable.
-## Place your cursor after the 'b' in 'numb' below and press TAB.
-## This works for variables and functions alike.
-numb
+## Data structures are useful ways of representing and organizing data in R.
+## There are several data structures we can construct, but we'll focus on two:
 
-# The class() function tells the data class/type of the variable and requires one argument
-class(number)
-ls()
+## 1. c(): ordered groupings of the SAME type of data (called "vectors").
+## 2. data.frame(): and ordered group of equal-length vectors; think of an Excel spreadsheet.
 
-## Removing Variables. rm() will remove a variable
-rm(number)
-ls()
-number # Error
-
-## Remove all variables with rm(list = ls()).
-## Notice that this is the first function we're using with a named argument!
-## Or, click the broom icon at top of 'Environment' pane.
-rm(list = ls()) 
-ls()
-
-### Challenge 1: Variable Assignment
-### Define three variables and then write a mathematical expression using only those variables.
-
-# Section 4: Data Types
+# Section 4.1: Vectors
+## A vector is an ordered group of the *same* type of data. We can we can create vectors by "concatenating" data together with the c() function:
+vec <- c(2, 5, 8, 11, 14)
+vec
 
 ## There are five main types of data we will work with in R:
 ## 1. numeric: decimals (the default for ALL numbers in R).
@@ -83,102 +77,13 @@ ls()
 ## 4. logical: TRUE or FALSE (1 or 0).
 ## 5. factor: nominal or ordinal categorical type.
 
-# Section 4.1: Numerics
-## Assign 5 to 'number' and check its class. 
-number <- 5
-number
-class(number)
-
-# Section 4.2: Integers
-## Coerce 'number' to integer type with the as.integer() function:
-number_int <- as.integer(number)
-number_int
-class(number_int)
-
-## Section 4.3: Characters
-## Define welcome <- "Welcome to the D-Lab" and check its class:
-welcome <- "Welcome to the D-Lab"
-class(welcome)
-ls()
-
-## Single and double quotes work similarly:
-contraction <- 'I am hungry.'
-contraction
-
-contraction <- "I am hungry."
-contraction
-
-## You can nest single quotes inside of double quotes:
-contraction <- "I'm hungry"
-contraction
-
-## Or, you can use all single quotes along with escape characters:
-contraction <- 'I\'m hungry'
-contraction
-
-## However, you cannot nest single quotes inside of single quotes.
-
-## Section: 4.4 Logicals
-## Logical data will check to see if a condition is TRUE (1) or FALSE (0).
-class(TRUE)
-class(FALSE)
-
-## Since TRUE and FALSE are stored as 1 and 0, they take on mathematical properties:
-TRUE + 2
-FALSE - 4
-
-## Boolean data types evaluate whether a statement is TRUE. Check the following:
-FALSE < TRUE # less than
-TRUE >= TRUE # greater than or equal to
-FALSE == FALSE # equivalent to (equal to)
-"Mac" == "mac" # R is case sensitive
-FALSE != FALSE # not equivalent to (not equal to)
-"PC" != "Windows"
-
-## Boolean 'and' (all conditions must be satisfied):
-TRUE & TRUE 
-TRUE & FALSE
-
-## Boolean "or" (just one condition must be satisfied):
-TRUE | TRUE 
-TRUE | FALSE
-
-# Section 4.5: Factors
-
-## A factor variable is a set of categorical or ordinal values. We won't cover
-## factors in this Push-In, but check out R Fundamentals to learn more!
-
-### Challenge 2: Data type coercion
-### Like as.integer, other "as dot" functions exist as well, such as as.numeric, as.character, as.logical, and as.factor.
-### 1. Define three variables: one numeric, one character, and one logical
-
-### 2a. Can you convert numeric to integer type?
-
-### 2b. Convert numeric to logical?
-
-### 2c. Convert numeric to character?
-
-### 2d. Convert logical to character?
-
-### 2e. Convert character to numeric?
-
-# Section 5: Data Structures
-
-## Data structures are useful ways of representing and organizing data in R.
-## There are several data structures we can construct, but we'll focus on two:
-
-## 1. c(): ordered groupings of the SAME type of data (called "vectors").
-## 2. data.frame(): and ordered group of equal-length vectors; think of an Excel spreadsheet.
-
-# Section 5.1: Vectors
-## A vector is an ordered group of the *same* type of data. We can we can create vectors by "concatenating" data together with the c() function:
-vec <- c(2, 5, 8, 11, 14)
-vec
+## For this script, we will only need the numeric, logical, and character type, but we highlight the rest for completeness and because they will be useful as you work more in R. 
 
 ## It does not matter what type the data is contained within the vector, as long as it is all the same:
 numeric_vector <- c(234, 31343, 78, 0.23, 0.0000002)
 numeric_vector
-class(numeric_vector)
+
+## The length() function lets us know how many elements are in our vector. 
 length(numeric_vector) # There are five elements in this vector.
 
 ## Indexing a vector
@@ -190,12 +95,14 @@ numeric_vector[3]
 colon_vector <- c(28:36)
 colon_vector 
 
-# Vectors can contain other types, too. Consider the following examples:
+## Vectors can contain other types, too. Consider the following examples:
 character_vector <- c("Canada", "United States", "Mexico")
 character_vector
+
+## We can always see what type our data vector is by using the class() function. 
 class(character_vector)
 
-# Section 2: Data frames
+# Section 4.2: Data frames
 
 ## Why do we need a data frame? Think about datasets that you have seen before. For example, suppose we collected data on the characteristics of D-Lab Workshop learners. We might want to know the age, degree program, previous familiarity with programming, research interests, and likely many other attributes (variables). 
 
@@ -206,45 +113,88 @@ class(character_vector)
 ## Since they are vectors, each column can only contain the same data type, but columns of different types can be lined up next to each other.
 ## Meanwhile, rows can contain heterogeneous data.
 
-## Let's create a data frame capturing some information about countries:
-countries <- c("Canada", "Mexico", "United States")
-populations <- c(10, 20, 30)
-areas <- c(30, 10, 20)
+## Let's create the data frame for our data analysis. 
+## We will need a set of 30 individuals, which we will number from 1-30. In R, a nice trick when using sequential numbers is the : operator. 
+patients <- c(1:30)
+
+## We will have two groups, "treatment" who receive Vitamin C and "control" who do not. The groups will each have 15 people in them. 
+## Here we use another common function in R, rep() which repeats the value with give it as the first argument the number of times we specify as the second argument. 
+treatment <- c(rep("Treatment",15), rep("Control",15))
+
+
+gotBetter <- c(1,1,1,1,0,1,0,1,0,1,1,1,0,0,1, rep(0,10), 1, 1,0,1,0)
+
 
 ## We can create the data frame with the data.frame() function.
 ## The equal-length vectors are the arguments.
 ## Notice that the name of each variable becomes the name of the column.
-df <- data.frame(countries, populations, areas)
-df
+dat <- data.frame(patients, treatment, gotBetter)
+dat
 
 ## If we wanted to change the column names, we can specify that with the function argument:
-df <- data.frame(country = countries, population = populations, area = areas)
-df
+dat <- data.frame(subjects = patients, 
+                 condition = treatment, 
+                 result = gotBetter)
+dat
 
 ## Check the compact structure of the data frame:
-str(df)
+str(dat)
 
 ## View the dimensions (nrow x ncol) of the data frame:
-dim(df) 
+dim(dat) 
 
 ## View column names:
-colnames(df)
+colnames(dat)
 
 ## View row names (we did not change these and they default to character type):
-rownames(df)
-class(rownames(df))
+rownames(dat)
+class(rownames(dat))
 
 ## You can extract a single column with the $ operator:
-df$country
+dat$subjects
 
 ## The $ operator can also be used to create new columns:
-df$density <- df$population / df$area
-df
+## The following will assign a new column where every value is 1
+dat$ones <- 1
+
+## We can also use the $ operator to create new columns using our variables
+dat$example <- dat$subjects + dat$ones
+dat
 
 ### Challenge 3: Make your own data frame.
 ### 1. Create a data frame that contains four different food items and three attributes for each: name, price, and quantity.
 ### 2. Add a fourth column that calculates the total cost for each food item.
 ### 3. What function could you use to calculate the total cost of all the fruits combined?
+
+## This concludes the R Introduction Push-In!
+## We encourage you to check out R-Fundamentals for a more detailed introduction into R.
+
+### Running a basic analysis 
+### We are interested in whether or not taking the treatment "worked" or not. The normal way to do this is to look at the average outcome in the treatment control and subtract the average outcome in the control group. 
+
+## We can do this by separating the data frame into the two conditions
+## Note here is an example of both subsetting and using a "Boolean" condition. The "==" means "equals" and it subsets the data frame to only the subjects who received Vitamin C. 
+treatGroup <- dat$result[dat$condition=="Treatment"]
+
+## Try doing the same with the Control condition
+controlGroup <- dat$result[dat$condition=="Control"]
+
+## Now let's look at the effect of taking Vitamin C on whether patients got better
+averageTreatmentEffect <- mean(treatGroup) - mean(controlGroup)
+averageTreatmentEffect
+
+## The treatment worked! In the original experiment, Lind wrote that "The most sudden and visible good effects were perceived from the use of oranges and lemons" foods high in Vitamin C. 
+
+## One way to confirm our results is by running a "t-test". There's a function for that in R. We see that the probability that there is no difference between our groups given we had observed such a large difference between the two of them is extremely small. 
+t.test(x = treatGroup, y=controlGroup)
+
+## Yet another way we can test the difference, which in this case is equivalent, is to run a regression of the outcome on the treatment assignment. In R, the function for this is lm(). This combines everything we have seen so far, our data frame with our experimental data, functions, and named arguments.
+model <- lm(result ~ condition, data = dat)
+
+## We can see a summary of our results with the summary() function.
+## Notice how the t-value and the p-value are the same between the t-test and the regression.
+summary(model)
+
 
 ## This concludes the R Introduction Push-In!
 ## We encourage you to check out R-Fundamentals for a more detailed introduction into R.
