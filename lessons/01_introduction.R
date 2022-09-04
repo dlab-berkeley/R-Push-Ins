@@ -1,6 +1,6 @@
 # R Introduction Push-In
 ## The goal of this Push-In is to provide a light introduction to R.
-## We aim to build up to dataframes, which are one of the most commonly used data structres in R.
+## We aim to build up to data frames, which are one of the most commonly used data structures in R.
 
 # Section 1: Navigating RStudio
 
